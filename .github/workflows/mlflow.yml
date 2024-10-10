@@ -20,12 +20,19 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install -y python3-dev python3-pip
-          pip install dvc
+          pip install dvc  # Install DVC
           pip install -r requirements.txt
 
+      # Create a local DVC storage directory
+      - name: Create DVC storage directory
+        run: mkdir -p dvc_storage
+
+      # Configure DVC to use the local storage
+      - name: Configure DVC remote
+        run: dvc remote add -d myremote dvc_storage
+
       - name: Pull Dataset using DVC
-        run: dvc pull
+        run: dvc pull -v  # Run with verbose logging
 
       - name: Train the model
         run: python model/train.py
