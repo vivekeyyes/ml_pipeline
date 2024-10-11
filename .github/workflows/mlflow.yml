@@ -24,12 +24,12 @@ jobs:
           pip install -r requirements.txt
 
       # Create a local DVC storage directory
-      - name: Create DVC storage directory
-        run: mkdir -p dvc_storage
+      #- name: Create DVC storage directory
+      #  run: mkdir -p dvc_storage
 
       # Configure DVC to use the local storage
-      - name: Configure DVC remote
-        run: dvc remote add -d myremote2 dvc_storage
+      #- name: Configure DVC remote
+      #  run: dvc remote add -d myremote2 dvc_storage
 
       - name: Pull Dataset using DVC
         run: dvc pull -v  # Run with verbose logging
